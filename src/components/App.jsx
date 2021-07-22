@@ -5,7 +5,7 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 function App() {
-    const [Notes, setNotes] = useState ([]);
+    const [notes, setNotes] = useState ([]);
 
     function addNote(newNote){
         setNotes(prevNotes=>([...prevNotes,newNote]));
@@ -25,10 +25,10 @@ function App() {
       <CreateArea 
           addNote={addNote}
       />
-      {Notes.map((Note,index)=>(
+      {notes.map((note,index)=>(
       <Note 
-          title={Note.title}
-          content={Note.content}
+          title={note.title}
+          content={note.content}
           key={index}
           id={index}
           deleteNote={deleteNote}
