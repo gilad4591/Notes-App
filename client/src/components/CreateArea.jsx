@@ -22,6 +22,7 @@ function CreateArea(props) {
       };
     });
   }
+  
 
   function submitNote(event){
     event.preventDefault();
@@ -44,7 +45,7 @@ function CreateArea(props) {
       <form className="create-note">
         {isExpanded && <div> <input onChange={handleChange} name="title" value={note.title} placeholder="Title" autoComplete="off" required="required"/> <hr></hr></div>}
         
-        <textarea onChange={handleChange} onClick={expand} name="content" value={note.content} placeholder="Take a note..." rows={rowsNumber} autoComplete="off" />
+        <textarea onChange={handleChange} onClick={expand} name="content" value={note.content} placeholder="Take a note..." rows={rowsNumber} autoComplete="off" required="required"/>
     {isExpanded &&<Zoom in= {true}>
         <Fab onClick={submitNote}><AddIcon/></Fab>
       </Zoom> } 
