@@ -7,8 +7,10 @@ import axios from "axios";
 
 
 
+
 function App() {
     const [notes, setNotes] = useState ([]);
+
 
     useEffect(() => {
       axios.get("/api/notes")
@@ -25,9 +27,9 @@ function App() {
     
 
     function deleteNote(id){
-      console.log(id);
+        console.log(id);
       axios.delete("/api/notes/delete/:noteId", { data: { noteId: id } }).then((res)=>setNotes([res.data])).catch((err)=>console.log(err));
-    }
+  }
   return (
     <div>
       <Header />
