@@ -6,6 +6,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import EditIcon from '@material-ui/icons/Edit';
+import Fab from '@material-ui/core/Fab';
+
+import {  Link } from "react-router-dom";
+
+
+
+
 
 function Note(props) {
 
@@ -25,13 +33,23 @@ function Note(props) {
 
   return (
     <div className="note">
+
       <h1>{props.title}</h1>
       <p>{props.content}</p>
-      <button onClick = {()=>{
+      <Fab color="inherit" onClick = {()=>{
           handleClickOpen();
       }}>
       <DeleteIcon />
-      </button>
+      </Fab>
+<div className="color-delete">
+
+      <Link to={{pathname: "editnote", state:{noteTitle: props.title, noteContent: props.content, noteId: props.id}}}><Fab color="inherit"><EditIcon/></Fab></Link>
+</div>
+
+
+
+
+
       <Dialog
         open={open}
         onClose={handleClose}

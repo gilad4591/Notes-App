@@ -1,52 +1,32 @@
 import React, {useState, useEffect} from "react";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
-import Note from "./Note";
-import CreateArea from "./CreateArea";
 import axios from "axios";
+import EditNote from './EditNote';
+import MainPage from './MainPage';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 
 
 
 function App() {
-    const [notes, setNotes] = useState ([]);
-
-
-    useEffect(() => {
-      axios.get("/api/notes")
-        .then((res) => setNotes(res.data))
-        .catch((err) => console.error(err));
-    },);
-
-    function addNote(newNote){
-      axios.post("/api/notes/add", newNote)
-      .then((res) => setNotes([...notes, res.data]))
-      .catch((err) => console.log(err));
-      
-    }
     
-
-    function deleteNote(id){
-        console.log(id);
-      axios.delete("/api/notes/delete/:noteId", { data: { noteId: id } }).then((res)=>setNotes([res.data])).catch((err)=>console.log(err));
-  }
   return (
-    <div>
-      <Header />
-      <CreateArea 
-          addNote={addNote}
-      />
-      {notes.map((note)=>(
-      <Note 
-          title={note.title}
-          content={note.content}
-          key={note._id}
-          id={note._id}
-          deleteNote={deleteNote}
-      />
-      ))}
-      <Footer />
-    </div>
+    <Router>
+    <Main/>
+    <Footer/>
+    </Router>
+  );
+}
+
+function Main(){
+  return(
+    <Switch>
+      <Route exact path="/" component={MainPage} />
+      <Route exact path="/editnote" component={EditNote} />
+      {/* <Route exact path="/about" component={AboutPage} /> */}
+
+    </Switch>
   );
 }
 

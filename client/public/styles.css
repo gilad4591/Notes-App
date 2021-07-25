@@ -64,17 +64,19 @@ border-color: #139bf5;}
   }
 
   .note button {
-    background-color: #fff;
+    background-color: #1375f5;
     position: relative;
     float: right;
-    margin-right: 10px;
-    color: #139bf5;
+    margin-right: 50px;
+    color: #fff;
     border: none;
-    width: 80px;
+    width: 36px;
     height: 36px;
     cursor: pointer;
     outline: none;
   }
+  
+
   
   form {
     position: relative;
@@ -96,7 +98,7 @@ form textarea {
   font-family: inherit;
   resize: none;
 }
-form button {
+button {
   position: absolute;
   right: 18px;
   bottom: -18px;
@@ -129,7 +131,7 @@ form.create-note textarea {
   font-family: inherit;
   resize: none;
 }
-form.create-note button {
+form.create-note button, .edit-note-button {
   position: absolute;
   right: 18px;
   bottom: -18px;
@@ -142,4 +144,9 @@ form.create-note button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
+}
+.back-button{
+  position: absolute;
+  left: 18px;
+  bottom: -18px;
 }

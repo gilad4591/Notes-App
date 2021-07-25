@@ -48,18 +48,18 @@ app.get("/api/notes", (req, res) => {
     });
  });
  
- // Route to get a specific note
+//  Route to get a specific note
 
-// app.get("/api/notes/:noteId", (req, res) => {
-// 	  const noteId = req.params.noteId;
-//     NotesModel.findOne({_id: {noteId}}, {__v: 0}, (err, docs) => {
-//        if (!err) {
-//           res.json(docs);
-//        } else {
-//           res.status(400).json({"error": err});
-//        }
-//     });
-//  });
+app.get("/api/notes/:noteId", (req, res) => {
+	  const noteId = req.params.noteId;
+    NotesModel.findOne({_id: {noteId}}, {__v: 0}, (err, docs) => {
+       if (!err) {
+          res.json(docs);
+       } else {
+          res.status(400).json({"error": err});
+       }
+    });
+ });
  app.delete("/api/notes/delete/:noteId", function(req, res) {
    const noteIdToDelete = req.body.noteId;
   NotesModel.findByIdAndDelete(noteIdToDelete, function(err,result){
@@ -84,6 +84,45 @@ app.post("/api/notes/add", (req, res) => {
        }
     });
  });
+
+ //update note
+
+ app.patch('/api/notes/:noteId', function(req, res){   
+   console.log("erer");
+   console.log(req.body);
+   NotesModel.findByIdAndUpdate(req.body.noteId, req.body.note)
+     .then(() => {
+       res.json("Note updated.");
+     })
+     .catch(err => {
+       res.status(422).send("Note update failed. Error: " + err);
+     });
+ });
+
+//  app.post("/api/notes/update", (req, res) => {
+//    let note = new NotesModel(req.body);
+//    const noteId = req.body.noteId;
+//    // const note = {title: req.body.note.title, content: req.body.note.content};
+//    // console.log(req.body.note.title);  
+    
+//     NotesModel.findByIdAndUpdate(noteId, {note}, function(err,result){
+//       if(!err){
+//          console.log("Updated User : ", result);
+
+//       }else{
+//          console.log(err);
+//       }
+//    });
+   
+// });
+
+//  app.post("/api/notes/update"), (req,res) => {
+   // const noteIdToUpdate = req.body.noteId;
+   // let note = new NotesModel(req.body);
+
+   
+  
+//  }
 
  app.listen(PORT, () => {
     console.log(app.get("env").toUpperCase() + " Server started on port " + (PORT));
